@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { query } from "../config/db";
 
-export const Login = async (req: Request, res: Response) => {
+export const Login = async (req: Request, res: Response): Promise<void> => {
   const { email, password } = req.body;
 
   try {
@@ -11,19 +11,19 @@ export const Login = async (req: Request, res: Response) => {
     console.log(rows.length);
 
     if (rows.length === 0) {
-      return res.status(204).json({
+      res.status(204).json({
         message: "User not found",
       });
       
     }
 
-    return res.status(200).json({
+    res.status(200).json({
       message: "User found",
       user: rows[0],
     });
   } catch (error) {
     if (error instanceof Error) {
-      return res.status(500).json({
+      res.status(500).json({
         message: error.message,
       });
     }
