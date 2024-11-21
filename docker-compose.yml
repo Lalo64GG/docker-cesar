@@ -4,7 +4,7 @@ services:
   react-app:
     build:
       context: ./front
-      dockerfile: DockerFile
+      dockerfile: Dockerfile
     ports:
       - "80:80"
     depends_on:
