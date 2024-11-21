@@ -4,9 +4,9 @@ services:
   react-app:
     build:
       context: ./front
-      dockerfile: Dockerfile
+      dockerfile: DockerFile
     ports:
-      - "3000:80" # Exponiendo el servicio Vite en un puerto diferente
+      - "80:80"
     depends_on:
       - db
       - api
@@ -14,7 +14,7 @@ services:
   api:
     build:
       context: ./back
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile # Asegúrate de que exista este archivo en la carpeta `api`
     environment:
       DHOST: db
       DUSER: user
@@ -29,7 +29,7 @@ services:
   db:
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: root_password # Cambia esto a una contraseña segura
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: user
       MYSQL_PASSWORD: password
